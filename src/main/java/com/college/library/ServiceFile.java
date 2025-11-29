@@ -27,9 +27,11 @@ public class ServiceFile {
     }
     Library getIdf(int id)
     {
+        //throw Run time Exception if row dosenot exist
         return rf.findById(id).orElseThrow(()->new RuntimeException("NOT FOUND "));
     }
 
+    //we create PAgeable by page and size and give it to page request which is get the data by that page
     Page<Library> getPage(int page , int size)
     {
         Pageable pa= PageRequest.of(page,size);
@@ -46,6 +48,7 @@ public class ServiceFile {
         return "DELETION DONE";
     }
 
+    //save update the existing row if it is not create
     Library update(Library l)
     {
         return rf.save(l);
